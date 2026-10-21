@@ -4,6 +4,13 @@
 
 ![主界面](docs/screenshots/main.png)
 
+## 下载
+
+**[→ 最新版本 Releases](https://github.com/ChuOZhen/work-schedule/releases/latest)**
+
+- **便携版**（推荐）：下载 `work-schedule-portable-*.zip`，解压双击 `work schedule.exe`，免安装
+- **源码**：`npm install && npm run dev`
+
 ## 现在就能跑
 
 ```bash
