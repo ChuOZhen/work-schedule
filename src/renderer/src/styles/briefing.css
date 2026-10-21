@@ -1,0 +1,224 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+  font-family: var(--font, "SF Pro Text", "Segoe UI Variable Text", "PingFang SC", "Microsoft YaHei UI", system-ui);
+  user-select: none;
+  cursor: default;
+}
+
+#root {
+  height: 100%;
+}
+
+.briefing-root {
+  height: 100%;
+  padding: 0;
+}
+
+.briefing-card {
+  position: relative;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 12px 15px 10px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+  overflow: hidden;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.015)),
+    linear-gradient(180deg, rgba(19, 20, 25, 0.8), rgba(12, 13, 17, 0.88));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 18px 42px rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.94);
+  opacity: 0;
+  transform: translateY(16px) scale(0.965);
+  transition:
+    opacity 260ms cubic-bezier(0.22, 1.18, 0.36, 1),
+    transform 260ms cubic-bezier(0.22, 1.18, 0.36, 1);
+  -webkit-app-region: drag;
+}
+
+.briefing-card.shown {
+  opacity: 1;
+  transform: none;
+}
+
+.briefing-card.leaving {
+  opacity: 0;
+  transform: translateY(8px) scale(0.98);
+  transition-duration: 160ms;
+}
+
+.b-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  -webkit-app-region: no-drag;
+}
+
+.b-clock {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  font-variant-numeric: tabular-nums;
+}
+
+.b-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  color: #9ecbff;
+  background: rgba(10, 132, 255, 0.18);
+  border: 1px solid rgba(10, 132, 255, 0.26);
+}
+
+.b-event {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  min-height: 0;
+}
+
+.b-bar {
+  width: 3px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  box-shadow: 0 0 12px currentColor;
+}
+
+.b-body {
+  min-width: 0;
+  flex: 1;
+}
+
+.b-title {
+  font-size: 16.5px;
+  font-weight: 650;
+  letter-spacing: -0.2px;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.b-meta {
+  margin-top: 3px;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.56);
+  font-variant-numeric: tabular-nums;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.b-rel {
+  margin-top: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.b-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 6px;
+  opacity: 0.92;
+  transition: opacity 200ms ease;
+  -webkit-app-region: no-drag;
+}
+
+.briefing-root.paused .b-actions {
+  opacity: 1;
+}
+
+.b-btn {
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 140ms ease;
+}
+
+.b-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.b-btn-primary {
+  background: #0a84ff;
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(10, 132, 255, 0.4);
+}
+
+.b-btn-primary:hover {
+  background: #1f8fff;
+}
+
+.b-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.b-progress-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(10, 132, 255, 0.9), rgba(94, 92, 230, 0.9));
+  animation: drain 12s linear forwards;
+}
+
+.briefing-root.paused .b-progress-fill {
+  animation-play-state: paused;
+}
+
+@keyframes drain {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+.b-idle {
+  margin: auto;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .briefing-card,
+  .b-actions {
+    transition-duration: 1ms;
+  }
+  .b-progress-fill {
+    animation: none;
+  }
+}

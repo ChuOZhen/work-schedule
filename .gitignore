@@ -1,0 +1,11 @@
+node_modules/
+out/
+dist/
+release/
+pack/
+.cache-eb/
+*.log
+.DS_Store
+.vscode/
+Thumbs.db
+

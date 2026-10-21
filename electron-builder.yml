@@ -1,0 +1,38 @@
+appId: com.workschedule.app
+productName: work schedule
+copyright: work schedule
+
+directories:
+  output: release
+  buildResources: resources
+
+# 直接复用已下载解压的 Electron，避免打包时再从 GitHub 拉一次
+electronDist: node_modules/electron/dist
+
+files:
+  - out/**/*
+  - resources/tray.png
+  - resources/icon.png
+  - package.json
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  icon: resources/icon.png
+  artifactName: ${productName}-${version}-setup.${ext}
+  requestedExecutionLevel: asInvoker
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: work schedule
+  deleteAppDataOnUninstall: false
+
+extraMetadata:
+  main: out/main/index.js
